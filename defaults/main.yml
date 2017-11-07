@@ -207,7 +207,10 @@ gitlab_version_suffix: "-ce.0"    # Only used for Debian and if gitlab_version i
 # gitlab_user_git_user_name: "GitLab"
 # gitlab_user_git_user_email: "gitlab@#{node['fqdn']}"
 
-
+# --- GitLab Workhorse --- #
+# gitlab_workhorse_enable = true
+# gitlab_workhorse_listen_network = "unix"
+# gitlab_workhorse_listen_addr = "/var/opt/gitlab/gitlab-workhorse/socket"
 
 # --- GitLab Unicorn --- #
 # gitlab_unicorn_worker_timeout: 60

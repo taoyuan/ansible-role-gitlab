@@ -1,6 +1,10 @@
 # --- GitLab Configuration --- #
-{% if gitlab_nginx_ssl_key is defined or gitlab_nginx_ssl_enabled == True %}
+{% if gitlab_external_url %}
+external_url "{{ gitlab_external_url }}"
+{% elif gitlab_nginx_ssl_key is defined or gitlab_nginx_ssl_enabled == True %}
 external_url "https://{{ gitlab_fqdn }}{% if gitlab_nginx_ssl_port | int != 443 %}:{{ gitlab_nginx_ssl_port }}{% endif %}"
+{% elif gitlab_ssl_enabled%}
+external_url "https://{{ gitlab_fqdn }}{% if gitlab_ssl_port | int != 443 %}:{{ gitlab_ssl_port }}{% endif %}"
 {% else %}
 external_url "http://{{ gitlab_fqdn }}"
 {% endif -%}
@@ -11,6 +15,7 @@ external_url "http://{{ gitlab_fqdn }}"
 {% include 'gitlab_email.j2' %}
 {% include 'gitlab_user.j2' %}
 {% include 'gitlab_unicorn.j2' %}
+{% include 'gitlab_workhorse.j2' %}
 {% include 'gitlab_sidekiq.j2' %}
 {% include 'gitlab_shell.j2' %}
 {% include 'gitlab_postgresql.j2' %}

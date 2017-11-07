@@ -1,0 +1,17 @@
+{% if
+    gitlab_workhorse_enable is defined or
+    gitlab_workhorse_listen_network is defined or
+    gitlab_workhorse_listen_addr is defined
+%}
+
+####################
+# GitLab Workhorse #
+####################
+
+{% endif %}
+{% if gitlab_workhorse_enable is defined %}gitlab_workhorse['enable'] = {{ gitlab_workhorse_enable }}
+{% endif %}
+{% if gitlab_workhorse_listen_network is defined %}gitlab_workhorse['worker_processes'] = {{ gitlab_workhorse_listen_network }}
+{% endif %}
+{% if gitlab_workhorse_listen_addr is defined %}gitlab_workhorse['listen_addr'] = '{{ gitlab_workhorse_listen_addr }}'
+{% endif %}
