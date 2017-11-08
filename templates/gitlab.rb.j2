@@ -3,8 +3,8 @@
 external_url "{{ gitlab_external_url }}"
 {% elif gitlab_nginx_ssl_key is defined or gitlab_nginx_ssl_enabled == True %}
 external_url "https://{{ gitlab_fqdn }}{% if gitlab_nginx_ssl_port | int != 443 %}:{{ gitlab_nginx_ssl_port }}{% endif %}"
-{% elif gitlab_ssl_enabled%}
-external_url "https://{{ gitlab_fqdn }}{% if gitlab_ssl_port | int != 443 %}:{{ gitlab_ssl_port }}{% endif %}"
+{% elif gitlab_ssl_enable is defined %}
+external_url "https://{{ gitlab_fqdn }}{% if gitlab_nginx_ssl_port | int != 443 %}:{{ gitlab_nginx_ssl_port }}{% endif %}"
 {% else %}
 external_url "http://{{ gitlab_fqdn }}"
 {% endif -%}
