@@ -9,9 +9,9 @@
 ####################
 
 {% endif %}
-{% if gitlab_workhorse_enable is defined %}gitlab_workhorse['enable'] = {{ gitlab_workhorse_enable }}
+{% if gitlab_workhorse_enable is defined %}gitlab_workhorse['enable'] = {{ gitlab_workhorse_enable | lower }}
 {% endif %}
-{% if gitlab_workhorse_listen_network is defined %}gitlab_workhorse['worker_processes'] = {{ gitlab_workhorse_listen_network }}
+{% if gitlab_workhorse_listen_network is defined %}gitlab_workhorse['listen_network'] = "{{ gitlab_workhorse_listen_network }}"
 {% endif %}
-{% if gitlab_workhorse_listen_addr is defined %}gitlab_workhorse['listen_addr'] = '{{ gitlab_workhorse_listen_addr }}'
+{% if gitlab_workhorse_listen_addr is defined %}gitlab_workhorse['listen_addr'] = "{{ gitlab_workhorse_listen_addr }}"
 {% endif %}
